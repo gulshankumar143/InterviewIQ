@@ -1,0 +1,375 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  --page-bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-strong: #f8fafc;
+  --surface-muted: #eef2ff;
+  --text-primary: #172554;
+  --text-secondary: #64748b;
+  --border: #e2e8f0;
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-soft: #eef2ff;
+  --accent: #9333ea;
+  --success: #059669;
+  --error: #dc2626;
+  --warning: #d97706;
+  --shadow-soft: rgba(15, 23, 42, 0.06);
+}
+
+html[data-theme="dark"] {
+  --page-bg: #0b1120;
+  --surface: #111827;
+  --surface-strong: #1e293b;
+  --surface-muted: #0f172a;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border: #334155;
+  --primary: #818cf8;
+  --primary-hover: #a5b4fc;
+  --primary-soft: rgba(99, 102, 241, 0.12);
+  --accent: #c084fc;
+  --success: #34d399;
+  --error: #f87171;
+  --warning: #fbbf24;
+  --shadow-soft: rgba(15, 23, 42, 0.38);
+}
+
+@theme inline {
+  --color-background: var(--page-bg);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(79, 70, 229, 0.08), transparent 34%),
+    linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at top, rgba(129, 140, 248, 0.12), transparent 26%),
+    linear-gradient(135deg, #0b1120 0%, #111827 100%);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-strong);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.8);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+.slide-up {
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 28px;
+  box-shadow: 0 14px 40px var(--shadow-soft);
+}
+
+html[data-theme="dark"] .glass-card {
+  background: rgba(15, 23, 42, 0.76);
+  border-color: rgba(148, 163, 184, 0.2);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #9333ea 100%);
+  color: white;
+  padding: 0.875rem 1.4rem;
+  border-radius: 14px;
+  font-weight: 700;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 18px 34px rgba(79, 70, 229, 0.22);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 22px 38px rgba(79, 70, 229, 0.26);
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.status-success {
+  background: rgba(5, 150, 105, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+.status-warning {
+  background: rgba(217, 119, 6, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.status-error {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--error);
+  border: 1px solid rgba(220, 38, 38, 0.2);
+}
+
+.interviewer-dashboard .modern-table .ant-table {
+  color: var(--text-primary);
+}
+
+.interviewer-dashboard .modern-table .ant-table-thead > tr > th {
+  background: var(--surface-strong);
+  color: var(--text-secondary);
+  border-bottom-color: var(--border);
+}
+
+.interviewer-dashboard .modern-table .ant-table-tbody > tr > td {
+  border-bottom-color: var(--border);
+}
+
+.interviewer-dashboard .modern-table .ant-table-tbody > tr:hover > td {
+  background: rgba(79, 70, 229, 0.04);
+}
+
+html[data-theme="dark"] .interviewer-dashboard {
+  background-color: var(--page-bg);
+  background-image: linear-gradient(135deg, #0b1120 0%, #111827 100%);
+  color: var(--text-primary);
+}
+
+html[data-theme="dark"] .interviewer-dashboard h1[class*="from-slate-900"] {
+  background-image: linear-gradient(90deg, #e2e8f0, #cbd5e1, #99f6e4);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-white"],
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-white/80"],
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-white/70"],
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-white/90"] {
+  background-color: var(--surface);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-slate-50"],
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-gray-50"] {
+  background-color: var(--surface-muted);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-gray-100"] {
+  background-color: var(--surface-strong);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="border-slate-200"],
+html[data-theme="dark"] .interviewer-dashboard [class~="border-gray-200"],
+html[data-theme="dark"] .interviewer-dashboard [class~="border-gray-200/50"],
+html[data-theme="dark"] .interviewer-dashboard [class~="border-white/50"] {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="text-gray-900"],
+html[data-theme="dark"] .interviewer-dashboard [class~="text-gray-800"],
+html[data-theme="dark"] .interviewer-dashboard [class~="text-gray-700"] {
+  color: var(--text-primary);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="text-gray-600"],
+html[data-theme="dark"] .interviewer-dashboard [class~="text-gray-500"],
+html[data-theme="dark"] .interviewer-dashboard [class~="text-gray-400"] {
+  color: var(--text-secondary);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-green-50"],
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-green-100"] {
+  background-color: rgba(5, 150, 105, 0.16);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="text-green-700"],
+html[data-theme="dark"] .interviewer-dashboard [class~="text-green-800"] {
+  color: #6ee7b7;
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-blue-50"],
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-blue-100"],
+html[data-theme="dark"] .interviewer-dashboard [class~="from-blue-50"],
+html[data-theme="dark"] .interviewer-dashboard [class~="to-blue-50/50"] {
+  background-color: rgba(59, 130, 246, 0.14);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="text-blue-700"],
+html[data-theme="dark"] .interviewer-dashboard [class~="text-blue-800"] {
+  color: #93c5fd;
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-red-50"],
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-red-100"] {
+  background-color: rgba(220, 38, 38, 0.16);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="text-red-700"],
+html[data-theme="dark"] .interviewer-dashboard [class~="text-red-800"] {
+  color: #fca5a5;
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-yellow-100"] {
+  background-color: rgba(217, 119, 6, 0.18);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="text-yellow-800"] {
+  color: #fcd34d;
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="from-gray-50"] {
+  --tw-gradient-from: #1e293b var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(30 41 59 / 0) var(--tw-gradient-to-position);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="to-blue-50/30"],
+html[data-theme="dark"] .interviewer-dashboard [class~="to-indigo-50"] {
+  --tw-gradient-to: #1e293b var(--tw-gradient-to-position);
+}
+
+html[data-theme="dark"] .interviewer-dashboard [class~="bg-gradient-to-r"][class~="from-blue-50"] {
+  background-image: linear-gradient(to right, #172554, #1e293b);
+}
+
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-table,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-table-container,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-table-content,
+html[data-theme="dark"] .interviewer-dashboard .modern-table table {
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-table-thead > tr > th {
+  background: var(--surface-strong);
+  color: var(--text-secondary);
+  border-bottom-color: var(--border);
+}
+
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-table-tbody > tr > td {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-bottom-color: var(--border);
+}
+
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-table-tbody > tr:hover > td {
+  background: #1e293b;
+}
+
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-table-column-sorter,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-pagination,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-pagination-item a,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-pagination-prev button,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-pagination-next button,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-empty-description {
+  color: var(--text-secondary);
+}
+
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-pagination-item,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-pagination-prev button,
+html[data-theme="dark"] .interviewer-dashboard .modern-table .ant-pagination-next button {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .interviewer-dashboard .ant-input-affix-wrapper,
+html[data-theme="dark"] .interviewer-dashboard .ant-input,
+html[data-theme="dark"] .interviewer-dashboard .ant-input-group-addon,
+html[data-theme="dark"] .interviewer-dashboard .ant-input-search-button {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .interviewer-dashboard .ant-input::placeholder {
+  color: var(--text-secondary);
+}
+
+html[data-theme="dark"] .interviewer-dashboard .ant-input-search-button {
+  color: var(--text-secondary);
+}
